@@ -107,7 +107,6 @@ const createGetP = (polyglotOptions) => {
                                     [key]: xss(data),
                                 }), {});
                             break;
-
                         case 'string':
                             sanitizedData = xss(additionalData);
                             break;
