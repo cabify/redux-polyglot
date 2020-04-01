@@ -1,4 +1,5 @@
 import { compose } from 'redux';
+import xss from 'xss';
 import { createSelector } from 'reselect';
 import Polyglot from 'node-polyglot';
 import { identity } from './private/utils';
@@ -95,7 +96,28 @@ const createGetP = (polyglotOptions) => {
             }
             return {
                 ...p,
-                t,
+                t: (polyglotKey, additionalData) => {
+                    let sanitizedData;
+
+                    switch (typeof additionalData) {
+                        case 'object':
+                            sanitizedData = Object.entries(additionalData)
+                                .reduce((acc, [data, key]) => ({
+                                    ...acc,
+                                    [key]: xss(data),
+                                }), {});
+                            break;
+
+                        case 'string':
+                            sanitizedData = xss(additionalData);
+                            break;
+                        default:
+                            sanitizedData = additionalData;
+                            break;
+                    }
+
+                    return t(polyglotKey, sanitizedData);
+                },
                 tc,
                 tt,
                 tu,
