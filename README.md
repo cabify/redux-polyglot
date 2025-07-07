@@ -1,5 +1,9 @@
 # redux-polyglot
 
+> ⚠️ **This project is deprecated**  
+> This repository has been deprecated and is no longer under active development.  
+> You can still use it as a reference, but no issues, merge requests, or new features will be accepted.
+
 [ ![Codeship Status for Tiqa/redux-polyglot](https://app.codeship.com/projects/21623df0-8959-0134-75f2-0e35097499a9/status?branch=master)](https://app.codeship.com/projects/184177)
 
 Toolset (actions, reducer, middleware, enhancer, selectors) to help use Polyglot with Redux.
